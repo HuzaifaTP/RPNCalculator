@@ -1,5 +1,6 @@
 
 function compute(expression) {
+    var stack = []
     const tokens = expression.split(' ');
     if (tokens.length === 2 && tokens[1] === 'sqrt') {
         return Math.sqrt(parseFloat(tokens[0]));
