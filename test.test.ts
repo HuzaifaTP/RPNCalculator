@@ -1,7 +1,7 @@
 
 //Assumption: MAX kept at 2
 function compute(expression) {
-    if(/^\d+$/.test(expression) || containsOnlyValidOperators(expression)){
+    if(containsOnlyValidOperators(expression)){
         throw new Error("expression invalid")
     }
     var numberStack = []
@@ -43,13 +43,23 @@ function compute(expression) {
 
 function containsOnlyValidOperators(expression: string): boolean {
     const tokens = expression.split(' ');
+    let numberCount = 0;
+    let operatorCount = 0;
+
     for (const token of tokens) {
-        if (!isOperator(token)||isNumber(token)) {
-            return false;
+        if (isNumber(token)) {
+            numberCount++;
+        } else if (isOperator(token)) {
+            operatorCount++;
+        } else {
+            return true;
         }
     }
-    return true;
+
+    return (numberCount === tokens.length || operatorCount === tokens.length);
 }
+
+
 function isNumber(token): boolean {
     return !isNaN(parseFloat(token));
 }
