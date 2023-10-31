@@ -1,7 +1,13 @@
+function evaluateExpression(expression) {
+    return derive(functionCorrespondingToOperator, stack)
+}
+function derive(functionCorrespondingToOperator(operator), stack){
 
-//Assumption: MAX kept at 2
+}
+
 function compute(expression) {
-    if(containsOnlyValidOperators(expression)){
+
+    if(notAValid(expression)){
         throw new Error("expression invalid")
     }
     var numberStack = []
@@ -41,7 +47,7 @@ function compute(expression) {
     return numberStack.pop();
 }
 
-function containsOnlyValidOperators(expression: string): boolean {
+function notAValid(expression: string): boolean {
     const tokens = expression.split(' ');
     let numberCount = 0;
     let operatorCount = 0;
