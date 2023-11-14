@@ -1,9 +1,9 @@
-function evaluateExpression(expression) {
-    return derive(functionCorrespondingToOperator, stack)
-}
-function derive(functionCorrespondingToOperator(operator), stack){
-
-}
+// function evaluateExpression(expression) {
+//     return derive(functionCorrespondingToOperator, stack)
+// }
+// function derive(functionCorrespondingToOperator(operator), stack){
+//
+// }
 
 function compute(expression) {
 
