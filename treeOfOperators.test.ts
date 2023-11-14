@@ -116,7 +116,13 @@ class RPNCalculator {
     }
 }
 
-
+describe('rpnCalculator', () => {
+    it('should return the correct value for various operations in order', () => {
+        expect(RPNCalculator.parseExpression("3 4 +").evaluate()).toBe(7);
+        expect(RPNCalculator.parseExpression('10 5 -').evaluate()).toBe(5);
+        expect(RPNCalculator.parseExpression('2 3 *').evaluate()).toBe(6);
+    });
+});
 
 
 
