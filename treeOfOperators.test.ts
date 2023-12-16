@@ -1,3 +1,5 @@
+import any = jasmine.any;
+
 interface Expression {
     evaluate(): number;
 }
@@ -77,14 +79,29 @@ class SquareRoot implements Expression {
         return Math.sqrt(result);
     }
 }
-const binaryOperations = {
-    '+': (left: Expression, right: Expression) => new Addition(left, right),
-    '-': (left: Expression, right: Expression) => new Subtraction(left, right),
-    '*': (left: Expression, right: Expression) => new Multiplication(left, right),
-    '/': (left: Expression, right: Expression) => new Division(left, right),
+const binaryOperation = (operation: (left: Expression, right: Expression) => Expression) => {
+   return function process(stack: Expression[]){
+       const left = stack.pop()
+       const right = stack.pop()
+       stack.push(operation(left,right))
+   }
+}
+const unaryOperation = (operation: (operand: Expression)=>Expression) => {
+    return function process(stack: Expression[]) {
+        const expression = stack.pop()
+        stack.push(operation(operation(expression)))
+    }
+}
+
+const operatorDictionary = {
+    '+': binaryOperation((left: Expression, right: Expression) => new Addition(left, right)),
+    '-': binaryOperation((left: Expression, right: Expression) => new Subtraction(left, right)),
+    '*': binaryOperation((left: Expression, right: Expression) => new Multiplication(left, right)),
+    '/': binaryOperation((left: Expression, right: Expression) => new Division(left, right)),
+    'sqrt': unaryOperation((operand: Expression) => new SquareRoot(operand)),
+
 };
 const unaryOperations = {
-    'sqrt': (operand: Expression) => new SquareRoot(operand),
 };
 
 
