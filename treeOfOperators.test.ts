@@ -12,27 +12,21 @@ class RPNPrinter implements ExpressionVisitor<string> {
     visitAddition(expression: Addition): string {
         return `${expression.left.visit(this)} ${expression.right.visit(this)} +`;
     }
-
     visitDivision(expression: Division): string {
         return undefined;
     }
-
     visitLiteral(expression: Literal): string {
         return expression.value.toString();
     }
-
     visitMultiplication(expression: Multiplication): string {
         return undefined;
     }
-
     visitSquareRoot(expression: SquareRoot): string {
         return undefined;
     }
-
     visitSubtraction(expression: Subtraction): string {
         return undefined;
     }
-
 }
 
 class Evaluator implements ExpressionVisitor<number> {
